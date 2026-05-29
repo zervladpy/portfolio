@@ -8,7 +8,7 @@ const props = Astro.props;
 const classList = [
     "flex items-center gap-2 py-1 px-3 rounded-full text-xs font-medium border",
     props.href != null
-        ? "transition-all duration-200 ease-in-out hover:scale-105 hover:border-[var(--color-accent)]"
+        ? "transition-all duration-200 ease-in-out hover:scale-105"
         : "",
     props.class,
 ];
@@ -21,6 +21,9 @@ const classList = [
 <style>
     a {
         background: var(--color-foreground-7);
-        border-color: var(--color-border);
+        border-color: rgba(255, 255, 255, 0.12);
+    }
+    a:hover {
+        border-color: rgba(255, 255, 255, 0.25);
     }
 </style>

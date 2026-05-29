@@ -17,7 +17,7 @@ const { title, description, locale } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg?" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="theme-color" content="#0f0f0f" />
+		<meta name="theme-color" content="#0a0a0a" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
 	</head>
@@ -29,17 +29,16 @@ const { title, description, locale } = Astro.props;
 
 <style is:global>
 	:root {
-		--color-primary: #5b21b6;
-		--color-secondary: #3b0764;
-		--color-accent: #a78bfa;
-		--color-background: #0f0f0f;
-		--color-surface: #1c1c1e;
-		--color-surface-hover: #242428;
-		--color-border: #2a2a2e;
-		--color-foreground: #f4f4f5;
-		--color-foreground-muted: #a1a1aa;
-		--color-foreground-7: #f4f4f514;
-		--color-foreground-80: #f4f4f5cf;
+		--color-primary: #ffffff;
+		--color-accent: #f8f8f8;
+		--color-background: #0a0a0a;
+		--color-surface: transparent;
+		--color-surface-hover: rgba(248, 248, 248, 0.03);
+		--color-border: rgba(255, 255, 255, 0.12);
+		--color-foreground: #f8f8f8;
+		--color-foreground-muted: #888888;
+		--color-foreground-7: rgba(248, 248, 248, 0.04);
+		--color-foreground-80: rgba(248, 248, 248, 0.8);
 	}
 
 	@font-face {
@@ -101,6 +100,7 @@ const { title, description, locale } = Astro.props;
 	}
 
 	.gradient {
+		display: none;
 		position: fixed;
 		top: 0;
 		left: 0;

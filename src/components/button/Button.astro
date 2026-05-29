@@ -5,7 +5,7 @@ interface Props extends HTMLAttributes<"a"> {}
 const props = Astro.props;
 
 const classList = [
-    "cursor-pointer py-2 px-4 rounded-xl flex items-center gap-2 text-sm font-medium transition-all duration-200 ease-in-out hover:brightness-110 hover:-translate-y-px active:translate-y-0",
+    "cursor-pointer py-2 px-4 rounded-xl flex items-center gap-2 text-sm font-medium transition-all duration-200 ease-in-out hover:-translate-y-px active:translate-y-0",
     props.class,
 ];
 ---
@@ -16,8 +16,15 @@ const classList = [
 
 <style>
     a {
-        background-color: var(--color-primary);
-        color: var(--color-foreground);
-        box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.08) inset;
+        background-color: transparent;
+        color: #f8f8f8;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+    a:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.55);
+    }
+    a:active {
+        background-color: rgba(255, 255, 255, 0.04);
     }
 </style>

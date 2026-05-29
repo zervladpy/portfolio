@@ -25,14 +25,10 @@ const social = props.social;
 ---
 
 <div class="flex flex-col gap-5 pt-6 pb-2">
-    <div class="relative inline-block w-fit" style="animation: fade-up 0.6s ease both 0.05s">
-        <div
-            class="absolute inset-0 rounded-full opacity-50 blur-xl scale-110"
-            style="background: var(--color-primary)"
-        ></div>
+    <div class="inline-block" style="animation: fade-up 0.6s ease both 0.05s">
         <img
             class="relative size-28 rounded-full object-cover"
-            style="box-shadow: 0 0 0 2px var(--color-border)"
+            style="box-shadow: 0 0 0 1.5px rgba(255,255,255,0.35)"
             src={picture}
             alt="profile image"
         />
@@ -40,7 +36,7 @@ const social = props.social;
 
     <div class="flex flex-col gap-1" style="animation: fade-up 0.6s ease both 0.15s">
         <h1 class="text-4xl font-bold tracking-tight">{name}</h1>
-        <p class="text-sm font-medium" style="color: var(--color-accent)">{position}</p>
+        <p class="text-sm font-medium" style="color: #888888; font-style: italic">{position}</p>
     </div>
 
     <p
