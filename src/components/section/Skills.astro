@@ -67,12 +67,12 @@ const TECH_ICONS: Record<string, any> = {
 };
 ---
 
-<div class="flex justify-center gap-3 flex-wrap grow-0 shrink-0">
+<div class="skills-grid gap-2">
     {
         skills.map((skill) => {
             const Icon = TECH_ICONS[skill];
             return (
-                <Badge>
+                <Badge class="justify-center">
                     {Icon && <Icon class="size-4" />}
                     {skill}
                 </Badge>
@@ -80,3 +80,9 @@ const TECH_ICONS: Record<string, any> = {
         })
     }
 </div>
+<style>
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+</style>

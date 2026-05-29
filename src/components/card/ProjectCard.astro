@@ -75,24 +75,24 @@ interface Props {
 const { name, description, image, link, stack } = Astro.props.project;
 ---
 
-<article class="flex flex-col gap-2">
+<article class="group flex flex-col gap-3 rounded-2xl p-5 border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_-8px_rgba(91,33,182,0.3)]">
     {
         image && (
             <figure>
                 <img
                     src={image}
-                    class="w-full rounded-3xl"
+                    class="w-full rounded-xl object-cover aspect-video transition-opacity duration-300 group-hover:opacity-90"
                     alt="project image"
                 />
             </figure>
         )
     }
     <header>
-        <h3 class="text-2xl">{name}</h3>
-        <p>{description}</p>
+        <h3 class="text-base font-semibold">{name}</h3>
+        <p class="text-sm" style="color: var(--color-foreground-muted)">{description}</p>
     </header>
-    <footer class="flex justify-between">
-        <div class="flex gap-2">
+    <footer class="flex justify-between items-center">
+        <div class="flex flex-wrap gap-1.5">
             {
                 stack.map((item) => {
                     const Icon = TECH_ICONS[item];
@@ -108,3 +108,14 @@ const { name, description, image, link, stack } = Astro.props.project;
         <Button href={link} target="_blank">Explore <ArrowIcon /></Button>
     </footer>
 </article>
+<style>
+    article {
+        background-color: var(--color-surface);
+        border-color: var(--color-border);
+    }
+
+    article:hover {
+        background-color: var(--color-surface-hover);
+        border-color: var(--color-primary);
+    }
+</style>

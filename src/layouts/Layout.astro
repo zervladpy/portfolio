@@ -17,31 +17,73 @@ const { title, description, locale } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg?" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="theme-color" content="#171717" />
+		<meta name="theme-color" content="#0f0f0f" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
 	</head>
 	<body>
 		<div class="gradient"></div>
-		<div class="content max-sm:px-9"><slot /></div>
+		<div class="content px-5 sm:px-8"><slot /></div>
 	</body>
 </html>
 
 <style is:global>
 	:root {
-		--color-primary: #342152;
-		--color-secondary: #271248;
-		--color-background: #171717;
-		--color-foreground: #eeeeee;
-		--color-foreground-7: #eeeeee0d;
-		--color-foreground-80: #eeeeeecf;
+		--color-primary: #5b21b6;
+		--color-secondary: #3b0764;
+		--color-accent: #a78bfa;
+		--color-background: #0f0f0f;
+		--color-surface: #1c1c1e;
+		--color-surface-hover: #242428;
+		--color-border: #2a2a2e;
+		--color-foreground: #f4f4f5;
+		--color-foreground-muted: #a1a1aa;
+		--color-foreground-7: #f4f4f514;
+		--color-foreground-80: #f4f4f5cf;
 	}
 
 	@font-face {
 		font-family: "Poppins";
 		src: url("/fonts/poppins/Poppins.ttf") format("truetype");
+		font-weight: 400;
 		font-display: swap;
 		font-style: normal;
+	}
+
+	@font-face {
+		font-family: "Poppins";
+		src: url("/fonts/poppins/Poppins.ttf") format("truetype");
+		font-weight: 500 600;
+		font-display: swap;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: "Poppins";
+		src: url("/fonts/poppins/Poppins.ttf") format("truetype");
+		font-weight: 700;
+		font-display: swap;
+		font-style: normal;
+	}
+
+	@keyframes fade-up {
+		from {
+			opacity: 0;
+			transform: translateY(16px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
 	}
 
 	html,
@@ -65,9 +107,9 @@ const { title, description, locale } = Astro.props;
 		width: 100%;
 		height: 100vh;
 		background: radial-gradient(
-			90% 40% at 50% 10%,
+			80% 50% at 50% -5%,
 			var(--color-primary),
-			var(--color-background)
+			var(--color-background) 70%
 		);
 		z-index: -1;
 	}
@@ -76,7 +118,7 @@ const { title, description, locale } = Astro.props;
 		position: relative;
 		z-index: 1;
 		margin-inline: auto;
-		width: 800px;
+		width: min(860px, 100%);
 		color: var(--color-foreground);
 		font-family: Poppins, sans-serif;
 	}

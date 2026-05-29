@@ -18,13 +18,13 @@ interface Props {
 const { position, company, badge, description, dates } = Astro.props.experience;
 ---
 
-<article class="flex flex-row gap-6">
+<article class="flex flex-row gap-5 rounded-2xl p-5 border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_-8px_rgba(91,33,182,0.3)]">
     <TimeStamp startDate={dates.start} endDate={dates.end} />
-    <div class="flex flex-col">
-        <div class="flex flex-row justify-between pb-5">
+    <div class="flex flex-col flex-1">
+        <div class="flex flex-row justify-between pb-3">
             <header>
-                <h3 class="text-2xl text-wrap">{position}</h3>
-                <h4 class="text-xl">{company}</h4>
+                <h3 class="text-base font-semibold">{position}</h3>
+                <h4 class="text-sm" style="color: var(--color-foreground-muted)">{company}</h4>
             </header>
             {
                 badge && (
@@ -34,11 +34,21 @@ const { position, company, badge, description, dates } = Astro.props.experience;
                 )
             }
         </div>
-        <p class="prose">{description}</p>
+        <p class="text-sm leading-relaxed">{description}</p>
     </div>
 </article>
 <style>
+    article {
+        background-color: var(--color-surface);
+        border-color: var(--color-border);
+    }
+
+    article:hover {
+        background-color: var(--color-surface-hover);
+        border-color: var(--color-primary);
+    }
+
     p {
-        color: var(--color-foreground);
+        color: var(--color-foreground-muted);
     }
 </style>

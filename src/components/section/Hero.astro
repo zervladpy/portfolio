@@ -24,19 +24,36 @@ const { name, position, description, mail, picture } = props.content;
 const social = props.social;
 ---
 
-<img class="size-32 rounded-3xl" src={picture} alt="profile image" />
-<div class="flex items-baseline">
-    <h1 class="text-5xl">{name}</h1>
-    <h2 class="text-xl">{position}</h2>
-</div>
-<p class="text-2xl">{description}</p>
-<div class="flex gap-6">
-    <Badge href={social.github}><GitHubIcon class="size-4" /> GitHub</Badge>
-    <Badge href={social.linkedin}
-        ><LinkedInIcon class="size-4" /> LinkedIn</Badge
-    >
-    <Badge href=`mailto:${mail}`>
-        <MailIcon class="size-6" />
-        <span class="leading-7">Mail</span>
-    </Badge>
+<div class="flex flex-col gap-5 pt-6 pb-2">
+    <div class="relative inline-block w-fit" style="animation: fade-up 0.6s ease both 0.05s">
+        <div
+            class="absolute inset-0 rounded-full opacity-50 blur-xl scale-110"
+            style="background: var(--color-primary)"
+        ></div>
+        <img
+            class="relative size-28 rounded-full object-cover"
+            style="box-shadow: 0 0 0 2px var(--color-border)"
+            src={picture}
+            alt="profile image"
+        />
+    </div>
+
+    <div class="flex flex-col gap-1" style="animation: fade-up 0.6s ease both 0.15s">
+        <h1 class="text-4xl font-bold tracking-tight">{name}</h1>
+        <p class="text-sm font-medium" style="color: var(--color-accent)">{position}</p>
+    </div>
+
+    <p
+        class="text-sm max-w-md leading-relaxed"
+        style="color: var(--color-foreground-muted); animation: fade-up 0.6s ease both 0.25s"
+    >{description}</p>
+
+    <div class="flex gap-4" style="animation: fade-up 0.6s ease both 0.35s">
+        <Badge href={social.github}><GitHubIcon class="size-4" /> GitHub</Badge>
+        <Badge href={social.linkedin}><LinkedInIcon class="size-4" /> LinkedIn</Badge>
+        <Badge href=`mailto:${mail}`>
+            <MailIcon class="size-4" />
+            <span>Mail</span>
+        </Badge>
+    </div>
 </div>
