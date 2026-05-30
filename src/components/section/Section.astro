@@ -15,7 +15,7 @@ const classList = ["py-12 flex flex-col gap-8", props.class];
     {title && (
         <div class="flex flex-col gap-2" style="animation: fade-in 0.4s ease both">
             <h2 class="text-sm font-semibold" style="color: var(--color-accent)">{title}</h2>
-            <div class="h-px w-full" style="background: rgba(255,255,255,0.16)"></div>
+            <div class="h-px w-full" style="background: var(--color-divider)"></div>
         </div>
     )}
     <slot />

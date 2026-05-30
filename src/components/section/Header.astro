@@ -1,6 +1,7 @@
 ---
 import LocaleDropdownMenu from "@components/dropdown/variants/LocaleDropdownMenu.astro";
 import NavigationMenu from "@components/navigation/NavigationMenu.astro";
+import ThemeToggle from "@components/ThemeToggle.astro";
 
 interface Props {
     links: { label: string; href: string }[];
@@ -13,12 +14,16 @@ const { links } = Astro.props;
     class="sticky top-4 z-50 flex justify-between items-center rounded-2xl backdrop-blur-xl py-2 px-3 border"
 >
     <NavigationMenu links={links} />
-    <LocaleDropdownMenu currentLocale="en" />
+    <div class="flex items-center gap-1">
+        <ThemeToggle />
+        <LocaleDropdownMenu currentLocale="en" />
+    </div>
 </header>
 
 <style>
     header {
-        background: rgba(10, 10, 10, 0.92);
-        border-color: rgba(255, 255, 255, 0.10);
+        background: var(--color-header-bg);
+        border-color: var(--color-header-border);
+        transition: background 200ms ease, border-color 200ms ease;
     }
 </style>

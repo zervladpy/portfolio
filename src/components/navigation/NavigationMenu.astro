@@ -29,8 +29,9 @@ const { links } = Astro.props;
 
 <style>
     #indicator {
-        background: rgba(255, 255, 255, 0.10);
-        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: var(--color-indicator-bg);
+        border: 1px solid var(--color-indicator-border);
+        transition: background 200ms ease, border-color 200ms ease;
     }
 
     nav a {
