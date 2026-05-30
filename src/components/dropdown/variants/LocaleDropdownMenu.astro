@@ -2,12 +2,6 @@
 import type { locale } from "@lib/locale";
 import { locales } from "@lib/locale";
 
-import UnitedStatesIcon from "@assets/icons/flags/UnitedStates.astro";
-import SpainIcon from "@assets/icons/flags/Spain.astro";
-import PortugalIcon from "@assets/icons/flags/Portugal.astro";
-import ItalyIcon from "@assets/icons/flags/Italy.astro";
-import RussiaIcon from "@assets/icons/flags/Russia.astro";
-
 import Dropdown from "@components/dropdown/Dropdown.astro";
 import DropdownLabel from "@components/dropdown/DropdownLabel.astro";
 import DropdownMenu from "@components/dropdown/DropdownMenu.astro";
@@ -15,35 +9,50 @@ import DropdownMenuItem from "@components/dropdown/DropdownMenuItem.astro";
 
 const currentLocale = Astro.currentLocale ?? "en";
 
-const FLAG_ICONS: Record<string, any> = {
-    en: UnitedStatesIcon,
-    es: SpainIcon,
-    ru: RussiaIcon,
-    it: ItalyIcon,
-    pt: PortugalIcon,
+const LOCALE_LABELS: Record<string, string> = {
+    en: "EN",
+    es: "ES",
+    ru: "RU",
+    it: "IT",
+    pt: "PT",
 };
-
-const CurrentSelection = FLAG_ICONS[currentLocale] ?? FLAG_ICONS.en;
 ---
 
 <Dropdown class="">
     <DropdownLabel>
-        <CurrentSelection />
+        <span class="locale-code">{LOCALE_LABELS[currentLocale] ?? "EN"}</span>
     </DropdownLabel>
     <DropdownMenu>
         {
             locales.map((locale) => {
                 if (currentLocale === locale.code) return;
-
-                const Icon = FLAG_ICONS[locale.code];
-                const href = locale.code != "en" ? `/${locale.code}` : "/";
-
+                const href = locale.code !== "en" ? `/${locale.code}` : "/";
                 return (
                     <DropdownMenuItem href={href}>
-                        <Icon />
+                        <span class="locale-code">{LOCALE_LABELS[locale.code]}</span>
                     </DropdownMenuItem>
                 );
             })
         }
     </DropdownMenu>
 </Dropdown>
+
+<style>
+    .locale-code {
+        font-size: 0.75rem;
+        font-weight: 600;
+        font-family: Poppins, sans-serif;
+        letter-spacing: 0.05em;
+        color: var(--color-foreground-muted);
+        padding: 2px 6px;
+        border-radius: 4px;
+        border: 1px solid var(--color-badge-border);
+        transition: color 150ms ease, border-color 150ms ease;
+        display: inline-block;
+        line-height: 1.4;
+    }
+    .locale-code:hover {
+        color: var(--color-foreground);
+        border-color: var(--color-badge-hover-border);
+    }
+</style>
