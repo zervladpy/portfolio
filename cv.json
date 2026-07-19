@@ -52,14 +52,6 @@
     ],
     "educations": [
         {
-            "school": "UNED",
-            "field": "Computer Science Degree",
-            "description": "Bachelor's degree in Computer Science, focusing on software development, algorithms, data structures, and network systems.",
-            "dates": {
-                "start": "09/2024"
-            }
-        },
-        {
             "school": "IES San Clemente",
             "field": "Cross Platform Software Developer",
             "description": "Computer Science education with a focus on cross-platform software development, including skills in creating applications for various platforms and devices.",

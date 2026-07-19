@@ -52,14 +52,6 @@
     ],
     "educations": [
         {
-            "school": "UNED",
-            "field": "Bacharelado em Ciência da Computação",
-            "description": "Bacharelado em Ciência da Computação, com foco em desenvolvimento de software, algoritmos, estruturas de dados e sistemas de redes.",
-            "dates": {
-                "start": "09/2024"
-            }
-        },
-        {
             "school": "IES San Clemente",
             "field": "Desenvolvimento de Software Multiplataforma",
             "description": "Formação em Ciência da Computação com foco no desenvolvimento de software multiplataforma, incluindo habilidades para criação de aplicativos para diversas plataformas e dispositivos.",

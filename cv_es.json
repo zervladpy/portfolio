@@ -52,14 +52,6 @@
     ],
     "educations": [
         {
-            "school": "UNED",
-            "field": "Licenciatura en Informática",
-            "description": "Licenciatura en Informática con enfoque en desarrollo de software, algoritmos, estructuras de datos y sistemas de redes.",
-            "dates": {
-                "start": "09/2024"
-            }
-        },
-        {
             "school": "IES San Clemente",
             "field": "Desarrollador de Software Multiplataforma",
             "description": "Educación en informática con enfoque en el desarrollo de software multiplataforma, incluyendo habilidades para crear aplicaciones para diversas plataformas y dispositivos.",

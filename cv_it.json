@@ -52,14 +52,6 @@
     ],
     "educations": [
         {
-            "school": "UNED",
-            "field": "Laurea in Informatica",
-            "description": "Laurea in Informatica, con focus sullo sviluppo software, algoritmi, strutture dati e sistemi di rete.",
-            "dates": {
-                "start": "09/2024"
-            }
-        },
-        {
             "school": "IES San Clemente",
             "field": "Sviluppatore di Software Multipiattaforma",
             "description": "Formazione in Informatica con focus sullo sviluppo di software multipiattaforma, incluse competenze nella creazione di applicazioni per varie piattaforme e dispositivi.",
