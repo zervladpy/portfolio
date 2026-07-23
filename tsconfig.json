@@ -9,25 +9,24 @@
   ],
   "compilerOptions": {
     "strictNullChecks": true,
-    "baseUrl": "./",
     "paths": {
       "@components/*": [
-        "src/components/*"
+        "./src/components/*"
       ],
       "@assets/*": [
-        "src/assets/*"
+        "./src/assets/*"
       ],
       "@layouts/*": [
-        "src/layouts/*"
+        "./src/layouts/*"
       ],
       "@content/*": [
-        "src/content/*"
+        "./src/content/*"
       ],
       "@lib/*": [
-        "src/lib/*"
+        "./src/lib/*"
       ],
       "@styles/*": [
-        "src/styles/*"
+        "./src/styles/*"
       ]
     }
   }
