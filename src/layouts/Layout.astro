@@ -1,4 +1,5 @@
 ---
+import "@styles/global.css";
 import type { locale } from "@lib/locale";
 
 interface Props {
@@ -22,14 +23,21 @@ const { title, description, locale } = Astro.props;
 		<title>{title}</title>
 		<script is:inline>
 			(function () {
-				if (localStorage.getItem("theme") === "light")
+				var stored = localStorage.getItem("theme");
+				var resolved =
+					stored === "light" || stored === "dark"
+						? stored
+						: window.matchMedia("(prefers-color-scheme: light)").matches
+							? "light"
+							: "dark";
+				if (resolved === "light")
 					document.documentElement.setAttribute("data-theme", "light");
 			})();
 		</script>
 	</head>
 	<body>
 		<div class="gradient"></div>
-		<div class="content px-5 sm:px-8"><slot /></div>
+		<div class="content px-5 sm:px-8 pt-20"><slot /></div>
 	</body>
 </html>
 
@@ -149,6 +157,7 @@ const { title, description, locale } = Astro.props;
 		background-color: var(--color-background);
 		margin: 0;
 		position: relative;
+		overflow-x: hidden;
 		transition: background-color 200ms ease;
 	}
 

@@ -8,8 +8,8 @@ interface Props {
 const { links } = Astro.props;
 ---
 
-<nav class="flex flex-grow gap-5 justify-between items-center">
-    <div class="flex flex-row gap-5">
+<nav class="hidden md:flex flex-grow gap-5 lg:gap-7 justify-between items-center">
+    <div class="flex flex-row gap-5 lg:gap-7">
         <div
             id="indicator"
             class="absolute rounded-lg transition-all duration-300 ease-in-out"
@@ -17,7 +17,7 @@ const { links } = Astro.props;
         </div>
         {
             links.map((link) => (
-                <Link class="py-1 px-2 relative z-10" href={link.href}>
+                <Link class="py-1 px-2 lg:py-1.5 lg:px-3 relative z-10" href={link.href}>
                     {link.label}
                 </Link>
             ))
