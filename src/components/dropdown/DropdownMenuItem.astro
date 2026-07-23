@@ -1,11 +1,87 @@
 ---
 interface Props {
-    href: string;
+    href?: string;
+    value?: string;
+    checked?: boolean;
+    class?: string;
 }
 
-const { href } = Astro.props;
+const { href, value, checked = false } = Astro.props;
+const classList = ["dropdown-item", Astro.props.class];
 ---
 
-<a href={href}>
-    <slot />
-</a>
+{
+    href ? (
+        <a href={href} class:list={classList} data-dropdown-item role="menuitem" aria-checked={checked}>
+            <span class="dropdown-item-content"><slot /></span>
+            <svg class="dropdown-item-check" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+            </svg>
+        </a>
+    ) : (
+        <button
+            type="button"
+            class:list={classList}
+            data-dropdown-item
+            data-value={value}
+            role="menuitemradio"
+            aria-checked={checked}
+        >
+            <span class="dropdown-item-content"><slot /></span>
+            <svg class="dropdown-item-check" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+            </svg>
+        </button>
+    )
+}
+
+<style>
+    .dropdown-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        text-align: left;
+        font: inherit;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        padding: 0.5rem 0.6rem;
+        border-radius: 0.45rem;
+        color: var(--color-foreground-muted);
+        transition: color 150ms ease, background 150ms ease;
+    }
+
+    .dropdown-item:hover {
+        color: var(--color-foreground);
+        background: var(--color-surface-hover);
+    }
+
+    .dropdown-item[aria-checked="true"] {
+        color: var(--color-foreground);
+    }
+
+    .dropdown-item-content {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .dropdown-item-content :global(svg) {
+        flex-shrink: 0;
+    }
+
+    .dropdown-item-check {
+        flex-shrink: 0;
+        color: var(--color-foreground);
+        opacity: 0;
+        transition: opacity 150ms ease;
+    }
+
+    .dropdown-item[aria-checked="true"] .dropdown-item-check {
+        opacity: 1;
+    }
+</style>

@@ -1,35 +1,50 @@
 ---
-import type { locale } from "@lib/locale";
 import { locales } from "@lib/locale";
 
 import Dropdown from "@components/dropdown/Dropdown.astro";
-import DropdownLabel from "@components/dropdown/DropdownLabel.astro";
+import DropdownTrigger from "@components/dropdown/DropdownTrigger.astro";
 import DropdownMenu from "@components/dropdown/DropdownMenu.astro";
 import DropdownMenuItem from "@components/dropdown/DropdownMenuItem.astro";
 
-const currentLocale = Astro.currentLocale ?? "en";
+import UnitedStatesFlag from "@assets/icons/flags/UnitedStates.astro";
+import SpainFlag from "@assets/icons/flags/Spain.astro";
+import ItalyFlag from "@assets/icons/flags/Italy.astro";
+import PortugalFlag from "@assets/icons/flags/Portugal.astro";
+import RussiaFlag from "@assets/icons/flags/Russia.astro";
 
-const LOCALE_LABELS: Record<string, string> = {
-    en: "EN",
-    es: "ES",
-    ru: "RU",
-    it: "IT",
-    pt: "PT",
+interface Props {
+    side?: "top" | "bottom";
+}
+
+const { side = "bottom" } = Astro.props;
+
+const FLAGS: Record<string, any> = {
+    en: UnitedStatesFlag,
+    es: SpainFlag,
+    it: ItalyFlag,
+    pt: PortugalFlag,
+    ru: RussiaFlag,
 };
+
+const currentLocale = Astro.currentLocale ?? "en";
+const current = locales.find((locale) => locale.code === currentLocale);
+const CurrentFlag = FLAGS[currentLocale];
 ---
 
-<Dropdown class="">
-    <DropdownLabel>
-        <span class="locale-code">{LOCALE_LABELS[currentLocale] ?? "EN"}</span>
-    </DropdownLabel>
-    <DropdownMenu>
+<Dropdown class="locale-dropdown">
+    <DropdownTrigger class="locale-trigger" aria-label="Change language">
+        <span class="locale-flag">
+            <CurrentFlag />
+        </span>
+        <span class="locale-current">{current?.name ?? "English"}</span>
+    </DropdownTrigger>
+    <DropdownMenu side={side}>
         {
             locales.map((locale) => {
-                if (currentLocale === locale.code) return;
                 const href = locale.code !== "en" ? `/${locale.code}` : "/";
                 return (
-                    <DropdownMenuItem href={href}>
-                        <span class="locale-code">{LOCALE_LABELS[locale.code]}</span>
+                    <DropdownMenuItem href={href} checked={currentLocale === locale.code}>
+                        {locale.name}
                     </DropdownMenuItem>
                 );
             })
@@ -38,21 +53,47 @@ const LOCALE_LABELS: Record<string, string> = {
 </Dropdown>
 
 <style>
-    .locale-code {
-        font-size: 0.75rem;
-        font-weight: 600;
-        font-family: Poppins, sans-serif;
-        letter-spacing: 0.05em;
+    .locale-trigger {
+        font-size: 0.8125rem;
+        font-weight: 500;
         color: var(--color-foreground-muted);
-        padding: 2px 6px;
-        border-radius: 4px;
-        border: 1px solid var(--color-badge-border);
-        transition: color 150ms ease, border-color 150ms ease;
-        display: inline-block;
-        line-height: 1.4;
+        padding: 4px 8px;
+        border-radius: 6px;
+        transition: color 150ms ease, background 150ms ease;
     }
-    .locale-code:hover {
+
+    .locale-trigger:hover {
         color: var(--color-foreground);
-        border-color: var(--color-badge-hover-border);
+        background: var(--color-surface-hover);
+    }
+
+    .locale-flag {
+        display: block;
+        flex-shrink: 0;
+        width: 1em;
+        height: 1em;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .locale-flag :global(svg) {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .locale-current {
+        white-space: nowrap;
+    }
+
+    @media (min-width: 768px) {
+        .locale-trigger {
+            gap: 2px;
+            padding: 5px;
+        }
+
+        .locale-current {
+            display: none;
+        }
     }
 </style>

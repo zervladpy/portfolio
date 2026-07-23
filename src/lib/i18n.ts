@@ -13,9 +13,6 @@ interface Translation {
     timeline: {
         actual: string;
     };
-    badges?: {
-        intern: string;
-    };
 }
 
 interface I18n {
@@ -66,9 +63,6 @@ export const i18n: I18n = {
         },
         buttons: {
             explore: "Esplora",
-        },
-        badges: {
-            intern: "Tirocinante"
         },
         timeline: {
             actual: "Attuale",
