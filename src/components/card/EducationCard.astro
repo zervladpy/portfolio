@@ -22,15 +22,15 @@ const { school, field, grade, description, dates } = props.education;
 <article class="flex flex-row gap-5 rounded-2xl p-5 border transition-all duration-300 hover:-translate-y-0.5">
     <TimeStamp startDate={dates.start} endDate={dates.end} />
     <div class="flex flex-col flex-1">
-        <div class="flex flex-row justify-between pb-3">
-            <header>
+        <div class="flex flex-row flex-wrap justify-between items-start gap-2 pb-3">
+            <header class="min-w-0">
                 <h3 class="text-base font-semibold">{field}</h3>
                 <h4 class="text-sm" style="color: var(--color-foreground-muted)">{school}</h4>
             </header>
             {
                 grade && (
-                    <div>
-                        <Badge>{grade.toPrecision(2)}</Badge>
+                    <div class="flex-shrink-0">
+                        <Badge class="whitespace-nowrap">{grade.toPrecision(2)}</Badge>
                     </div>
                 )
             }
