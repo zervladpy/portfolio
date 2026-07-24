@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install, build
-        uses: withastro/action@v6
+        uses: withastro/action@v7
         
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
