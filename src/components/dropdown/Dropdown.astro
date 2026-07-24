@@ -1,7 +1,13 @@
 ---
-const classList = ["group", "relative", "text-xl", Astro.props.class];
+const classList = ["dropdown", Astro.props.class];
 ---
 
-<button class:list={classList} aria-expanded="true" aria-haspopup="true">
+<div class:list={classList} data-dropdown data-state="closed">
     <slot />
-</button>
+</div>
+
+<style>
+    .dropdown {
+        position: relative;
+    }
+</style>

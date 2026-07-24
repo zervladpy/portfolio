@@ -1,14 +1,22 @@
 ---
-import { social, hero } from "cv.json";
-
 import GitHubIcon from "@assets/icons/GitHub.astro";
 import LinkedInIcon from "@assets/icons/LinkedIn.astro";
 import MailIcon from "@assets/icons/Mail.astro";
 import Badge from "@components/widgets/Badge.astro";
+
+interface Props {
+    social: {
+        github: string;
+        linkedin: string;
+    };
+    mail: string;
+}
+
+const { social, mail } = Astro.props;
 ---
 
-<footer class="flex justify-center items-center h-24">
-    <div class="flex gap-6 h-8">
+<footer class="flex flex-col items-center justify-center gap-4 py-10 border-t mt-4">
+    <div class="flex gap-4">
         <Badge href={social.github}>
             <GitHubIcon class="size-4" />
             <span>GitHub</span>
@@ -17,9 +25,14 @@ import Badge from "@components/widgets/Badge.astro";
             <LinkedInIcon class="size-4" />
             <span>LinkedIn</span>
         </Badge>
-        <Badge href=`mailto:${hero.mail}`>
-            <MailIcon class="size-6" />
-            <span class="leading-7">Mail</span>
+        <Badge href=`mailto:${mail}`>
+            <MailIcon class="size-4" />
+            <span>Mail</span>
         </Badge>
     </div>
 </footer>
+<style>
+    footer {
+        border-color: var(--color-header-border);
+    }
+</style>

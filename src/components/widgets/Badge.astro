@@ -6,9 +6,9 @@ interface Props extends HTMLAttributes<"a"> {}
 const props = Astro.props;
 
 const classList = [
-    "flex items-center gap-2 py-1 px-4 rounded-2xl leading-6",
+    "flex items-center gap-2 py-1 px-3 rounded-full text-xs font-medium border",
     props.href != null
-        ? "transition-transform duration-200 ease-in-out hover:scale-105"
+        ? "transition-all duration-200 ease-in-out hover:scale-105"
         : "",
     props.class,
 ];
@@ -21,5 +21,9 @@ const classList = [
 <style>
     a {
         background: var(--color-foreground-7);
+        border-color: var(--color-badge-border);
+    }
+    a:hover {
+        border-color: var(--color-badge-hover-border);
     }
 </style>

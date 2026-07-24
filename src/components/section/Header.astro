@@ -1,6 +1,8 @@
 ---
 import LocaleDropdownMenu from "@components/dropdown/variants/LocaleDropdownMenu.astro";
 import NavigationMenu from "@components/navigation/NavigationMenu.astro";
+import MobileNavDrawer from "@components/navigation/MobileNavDrawer.astro";
+import ThemeToggle from "@components/ThemeToggle.astro";
 
 interface Props {
     links: { label: string; href: string }[];
@@ -9,13 +11,87 @@ interface Props {
 const { links } = Astro.props;
 ---
 
-<header
-    class={`
-        sticky top-5 z-50 
-        flex justify-between items-center align-middle
-         rounded-xl backdrop-blur-xl py-1 px-2
-    `}
->
-    <NavigationMenu links={links} />
-    <LocaleDropdownMenu currentLocale="en" />
-</header>
+<div class="nav-row flex items-center px-5 sm:px-8">
+    <header
+        class="flex justify-between items-center rounded-2xl backdrop-blur-xl py-2 px-3 border"
+    >
+        <NavigationMenu links={links} />
+        <div class="flex items-center gap-1 ml-auto md:ml-0">
+            <button
+                id="mobile-menu-toggle"
+                class="menu-toggle"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+                aria-controls="mobile-drawer"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <div class="hidden md:flex items-center gap-3">
+                <ThemeToggle />
+                <LocaleDropdownMenu />
+            </div>
+        </div>
+    </header>
+</div>
+
+<MobileNavDrawer links={links} />
+
+<script src="/src/scripts/dropdown.ts"></script>
+
+<style>
+    .nav-row {
+        position: fixed;
+        top: 1rem;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        margin-inline: auto;
+        width: min(860px, 100%);
+    }
+
+    header {
+        min-width: 0;
+        background: var(--color-header-bg);
+        border-color: var(--color-header-border);
+        transition: background 200ms ease, border-color 200ms ease, width 200ms ease;
+    }
+
+    .menu-toggle {
+        display: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-foreground-muted);
+        border-radius: 6px;
+        transition: color 200ms ease;
+    }
+
+    .menu-toggle:hover {
+        color: var(--color-foreground);
+    }
+
+    @media (min-width: 768px) {
+        header {
+            flex: 1 1 auto;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .menu-toggle {
+            display: flex;
+        }
+
+        header {
+            width: fit-content;
+            margin-left: auto;
+        }
+    }
+</style>

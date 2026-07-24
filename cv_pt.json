@@ -12,8 +12,9 @@
     },
     "experiences": [
         {
-            "company": "Vip District",
+            "company": "Vip District by Epassi",
             "position": "Desenvolvedor Full Stack",
+            "badge": "Tempo Integral",
             "dates": {
                 "start": "02/2025"
             },
@@ -51,14 +52,6 @@
         }
     ],
     "educations": [
-        {
-            "school": "UNED",
-            "field": "Bacharelado em Ciência da Computação",
-            "description": "Bacharelado em Ciência da Computação, com foco em desenvolvimento de software, algoritmos, estruturas de dados e sistemas de redes.",
-            "dates": {
-                "start": "09/2024"
-            }
-        },
         {
             "school": "IES San Clemente",
             "field": "Desenvolvimento de Software Multiplataforma",
@@ -135,6 +128,7 @@
         "GitHub",
         "Firebase",
         "Supabase",
-        "Docker"
+        "Docker",
+        "ClaudeCode"
     ]
 }

@@ -1,0 +1,27 @@
+---
+const classList = ["dropdown-trigger", Astro.props.class];
+---
+
+<button
+    type="button"
+    class:list={classList}
+    data-dropdown-trigger
+    aria-haspopup="menu"
+    aria-expanded="false"
+>
+    <slot />
+</button>
+
+<style>
+    .dropdown-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font: inherit;
+        color: inherit;
+        padding: 0;
+    }
+</style>
