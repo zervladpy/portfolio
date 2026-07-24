@@ -19,28 +19,36 @@ const props = Astro.props;
 const { school, field, grade, description, dates } = props.education;
 ---
 
-<article class="flex flex-row gap-6">
+<article class="flex flex-row gap-5 rounded-2xl p-5 border transition-all duration-300 hover:-translate-y-0.5">
     <TimeStamp startDate={dates.start} endDate={dates.end} />
-    <div class="flex flex-col">
-        <div class="flex flex-row justify-between pb-5">
-            <header>
-                <h3 class="text-2xl text-wrap">{field}</h3>
-                <h4 class="text-xl">{school}</h4>
+    <div class="flex flex-col flex-1">
+        <div class="flex flex-row flex-wrap justify-between items-start gap-2 pb-3">
+            <header class="min-w-0">
+                <h3 class="text-base font-semibold">{field}</h3>
+                <h4 class="text-sm" style="color: var(--color-foreground-muted)">{school}</h4>
             </header>
             {
                 grade && (
-                    <div>
-                        <Badge>{grade.toPrecision(2)}</Badge>
+                    <div class="flex-shrink-0">
+                        <Badge class="whitespace-nowrap">{grade.toPrecision(2)}</Badge>
                     </div>
                 )
             }
         </div>
-        <p class="prose">{description}</p>
+        <p class="text-sm leading-relaxed">{description}</p>
     </div>
 </article>
 
 <style>
+    article {
+        background-color: var(--color-surface);
+        border-color: var(--color-border);
+    }
+    article:hover {
+        background-color: var(--color-surface-hover);
+        border-color: var(--color-card-border-hover);
+    }
     p {
-        color: var(--color-foreground);
+        color: var(--color-foreground-muted);
     }
 </style>

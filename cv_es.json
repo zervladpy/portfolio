@@ -12,6 +12,15 @@
     },
     "experiences": [
         {
+            "company": "Vip District by Epassi",
+            "position": "Desarrollador Full Stack",
+            "badge": "Tiempo Completo",
+            "dates": {
+                "start": "02/2025"
+            },
+            "description": "Responsable de la gestión de datos, desarrollo full stack y entrega de proyectos de inicio a fin."
+        },
+        {
             "company": "The Digital Company",
             "position": "Desarrollador Full Stack",
             "badge": "Becario",
@@ -43,14 +52,6 @@
         }
     ],
     "educations": [
-        {
-            "school": "UNED",
-            "field": "Licenciatura en Informática",
-            "description": "Licenciatura en Informática con enfoque en desarrollo de software, algoritmos, estructuras de datos y sistemas de redes.",
-            "dates": {
-                "start": "09/2024"
-            }
-        },
         {
             "school": "IES San Clemente",
             "field": "Desarrollador de Software Multiplataforma",
@@ -127,6 +128,7 @@
         "GitHub",
         "Firebase",
         "Supabase",
-        "Docker"
+        "Docker",
+        "ClaudeCode"
     ]
 }

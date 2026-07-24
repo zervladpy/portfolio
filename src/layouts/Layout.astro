@@ -1,4 +1,5 @@
 ---
+import "@styles/global.css";
 import type { locale } from "@lib/locale";
 
 interface Props {
@@ -17,31 +18,131 @@ const { title, description, locale } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg?" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="theme-color" content="#171717" />
+		<meta name="theme-color" content="#0a0a0a" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+		<script is:inline>
+			(function () {
+				var stored = localStorage.getItem("theme");
+				var resolved =
+					stored === "light" || stored === "dark"
+						? stored
+						: window.matchMedia("(prefers-color-scheme: light)").matches
+							? "light"
+							: "dark";
+				if (resolved === "light")
+					document.documentElement.setAttribute("data-theme", "light");
+			})();
+		</script>
 	</head>
 	<body>
 		<div class="gradient"></div>
-		<div class="content max-sm:px-9"><slot /></div>
+		<div class="content px-5 sm:px-8 pt-20"><slot /></div>
 	</body>
 </html>
 
 <style is:global>
 	:root {
-		--color-primary: #342152;
-		--color-secondary: #271248;
-		--color-background: #171717;
-		--color-foreground: #eeeeee;
-		--color-foreground-7: #eeeeee0d;
-		--color-foreground-80: #eeeeeecf;
+		--color-primary: #ffffff;
+		--color-accent: #f8f8f8;
+		--color-background: #0a0a0a;
+		--color-surface: transparent;
+		--color-surface-hover: rgba(248, 248, 248, 0.03);
+		--color-border: rgba(255, 255, 255, 0.12);
+		--color-foreground: #f8f8f8;
+		--color-foreground-muted: #888888;
+		--color-foreground-7: rgba(248, 248, 248, 0.04);
+		--color-foreground-80: rgba(248, 248, 248, 0.8);
+
+		/* theme-aware tokens used by components */
+		--color-header-bg: rgba(10, 10, 10, 0.92);
+		--color-header-border: rgba(255, 255, 255, 0.10);
+		--color-indicator-bg: rgba(255, 255, 255, 0.10);
+		--color-indicator-border: rgba(255, 255, 255, 0.22);
+		--color-timeline-line: rgba(255, 255, 255, 0.18);
+		--color-divider: rgba(255, 255, 255, 0.16);
+		--color-avatar-ring: rgba(255, 255, 255, 0.35);
+		--color-button-text: #f8f8f8;
+		--color-button-border: rgba(255, 255, 255, 0.35);
+		--color-button-hover-bg: rgba(255, 255, 255, 0.08);
+		--color-button-hover-border: rgba(255, 255, 255, 0.55);
+		--color-button-active-bg: rgba(255, 255, 255, 0.04);
+		--color-badge-border: rgba(255, 255, 255, 0.12);
+		--color-badge-hover-border: rgba(255, 255, 255, 0.25);
+		--color-card-border-hover: rgba(255, 255, 255, 0.22);
+	}
+
+	html[data-theme="light"] {
+		--color-primary: #111111;
+		--color-accent: #111111;
+		--color-background: #fafafa;
+		--color-surface: transparent;
+		--color-surface-hover: rgba(0, 0, 0, 0.02);
+		--color-border: rgba(0, 0, 0, 0.12);
+		--color-foreground: #111111;
+		--color-foreground-muted: #666666;
+		--color-foreground-7: rgba(0, 0, 0, 0.04);
+		--color-foreground-80: rgba(0, 0, 0, 0.8);
+
+		--color-header-bg: rgba(250, 250, 250, 0.92);
+		--color-header-border: rgba(0, 0, 0, 0.10);
+		--color-indicator-bg: rgba(0, 0, 0, 0.08);
+		--color-indicator-border: rgba(0, 0, 0, 0.18);
+		--color-timeline-line: rgba(0, 0, 0, 0.18);
+		--color-divider: rgba(0, 0, 0, 0.16);
+		--color-avatar-ring: rgba(0, 0, 0, 0.20);
+		--color-button-text: #111111;
+		--color-button-border: rgba(0, 0, 0, 0.30);
+		--color-button-hover-bg: rgba(0, 0, 0, 0.06);
+		--color-button-hover-border: rgba(0, 0, 0, 0.55);
+		--color-button-active-bg: rgba(0, 0, 0, 0.04);
+		--color-badge-border: rgba(0, 0, 0, 0.12);
+		--color-badge-hover-border: rgba(0, 0, 0, 0.25);
+		--color-card-border-hover: rgba(0, 0, 0, 0.22);
 	}
 
 	@font-face {
 		font-family: "Poppins";
 		src: url("/fonts/poppins/Poppins.ttf") format("truetype");
+		font-weight: 400;
 		font-display: swap;
 		font-style: normal;
+	}
+
+	@font-face {
+		font-family: "Poppins";
+		src: url("/fonts/poppins/Poppins.ttf") format("truetype");
+		font-weight: 500 600;
+		font-display: swap;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: "Poppins";
+		src: url("/fonts/poppins/Poppins.ttf") format("truetype");
+		font-weight: 700;
+		font-display: swap;
+		font-style: normal;
+	}
+
+	@keyframes fade-up {
+		from {
+			opacity: 0;
+			transform: translateY(16px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
 	}
 
 	html,
@@ -56,18 +157,21 @@ const { title, description, locale } = Astro.props;
 		background-color: var(--color-background);
 		margin: 0;
 		position: relative;
+		overflow-x: hidden;
+		transition: background-color 200ms ease;
 	}
 
 	.gradient {
+		display: none;
 		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100vh;
 		background: radial-gradient(
-			90% 40% at 50% 10%,
+			80% 50% at 50% -5%,
 			var(--color-primary),
-			var(--color-background)
+			var(--color-background) 70%
 		);
 		z-index: -1;
 	}
@@ -76,7 +180,7 @@ const { title, description, locale } = Astro.props;
 		position: relative;
 		z-index: 1;
 		margin-inline: auto;
-		width: 800px;
+		width: min(860px, 100%);
 		color: var(--color-foreground);
 		font-family: Poppins, sans-serif;
 	}

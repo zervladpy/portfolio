@@ -1,10 +1,65 @@
+---
+interface Props {
+    side?: "top" | "bottom";
+    align?: "start" | "end";
+    class?: string;
+}
+
+const { side = "bottom", align = "end" } = Astro.props;
+const classList = ["dropdown-content", Astro.props.class];
+---
+
 <div
-    id="dropdown-menu"
-    class={`
-        flex flex-col gap-1 
-        absolute top-full right-0 scale-y-0 
-        group-hover:scale-y-100 origin-top duration-200
-    `}
+    class:list={classList}
+    data-dropdown-content
+    data-side={side}
+    data-align={align}
+    role="menu"
 >
     <slot />
 </div>
+
+<style>
+    .dropdown-content {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 10rem;
+        padding: 4px;
+        border-radius: 0.7rem;
+        background: var(--color-header-bg);
+        border: 1px solid var(--color-header-border);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.96);
+        transition: opacity 150ms ease, transform 150ms ease;
+        z-index: 80;
+    }
+
+    .dropdown-content[data-side="bottom"] {
+        top: calc(100% + 6px);
+        transform-origin: top;
+    }
+
+    .dropdown-content[data-side="top"] {
+        bottom: calc(100% + 6px);
+        transform-origin: bottom;
+    }
+
+    .dropdown-content[data-align="end"] {
+        right: 0;
+    }
+
+    .dropdown-content[data-align="start"] {
+        left: 0;
+    }
+
+    :global([data-dropdown][data-state="open"]) > .dropdown-content {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1);
+    }
+</style>

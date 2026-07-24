@@ -13,14 +13,14 @@ const currentLocale = Astro.currentLocale;
 const displayEndDate = endDate || i18n[currentLocale ?? "en"].timeline.actual;
 ---
 
-<div class="flex flex-col items-center gap-1 py-2">
-    <time>{displayEndDate}</time>
-    <span class="flex-grow rounded-sm w-1"></span>
-    <time>{startDate}</time>
+<div class="flex flex-col items-center gap-1 pt-1 min-w-[52px]">
+    <time class="text-xs font-medium" style="color: var(--color-foreground-muted)">{displayEndDate}</time>
+    <span class="flex-grow rounded-full w-0.5 my-1 min-h-[20px]"></span>
+    <time class="text-xs font-medium" style="color: var(--color-foreground-muted)">{startDate}</time>
 </div>
 
 <style>
     span {
-        background-color: var(--color-foreground-7);
+        background: var(--color-timeline-line);
     }
 </style>
